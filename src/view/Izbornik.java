@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  */
 public class Izbornik extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form Izbornik
      */
@@ -27,49 +28,9 @@ public class Izbornik extends javax.swing.JFrame {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        /*
-        Obrada<Smjer> o = new Obrada<>();
+       
         
-        Smjer s = new Smjer();
-        s.setNaziv("Smjer " + String.valueOf(Math.random()).substring(3,7));
-        o.save(s);
-        
-        List<Smjer> lista = o.createQuery("from Smjer a where a.obrisano=false");
-        for (Smjer smjer : lista) {
-            System.out.println(smjer.getNaziv());
-        }
-        
-        
-        Obrada<Polaznik> op = new Obrada<>();
-        Polaznik p = new Polaznik();
-        p.setPrezime("Polaznik");
-        p.setIme(String.valueOf(Math.random()).substring(3,7));
-        op.save(p);
-        
-         List<Polaznik> polaznici = op.getAll();
-        for (Polaznik polaznik : polaznici) {
-            System.out.println(polaznik.getPrezime() + " " + polaznik.getIme());
-        }
-        
-        Obrada<Predavac> opredavac = new Obrada<>();
-        Predavac pr = new Predavac();
-        pr.setIme("Predavač");
-        pr.setPrezime(String.valueOf(Math.random()).substring(3,7));
-        
-        opredavac.save(pr);
-        //uništavam si MVC
-        List<Predavac> predavaci = HibernateUtil.getSession().createQuery(
-                "from Predavac a where a.obrisano=false and a.prezime not like :prezime")
-                .setParameter("prezime", "%2%")
-                .list();
-        
-        */
-        
-     /*    List<Predavac> predavaci = HibernateUtil.getSession().createQuery(
-                "from Predavac a where a.obrisano=false and a.prezime not like :prezime")
-                .setParameter("prezime", "%2%")
-                .list();
-    } /**
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,3 +93,6 @@ public class Izbornik extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     
+}
+    
+

@@ -27,14 +27,10 @@ public class Stanar extends Entitet implements Serializable {
     private String brojClanova;
     private String dug;
 
-    public Stanar() {
-    }
-
     public Stanar(String text, String text0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 
     public String getBrojStana() {
         return brojStana;
