@@ -10,6 +10,7 @@ import pomocno.HibernateUtil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.List;
+import model.Stanar;
 
 /**
  *
@@ -37,12 +38,12 @@ public class Loading extends javax.swing.JFrame {
 
     }
     private void izvedi() {
-        List<Stanari> l = HibernateUtil.getSession().createQuery(
+        List<Stanar> l = HibernateUtil.getSession().createQuery(
                 " from Stanar a")
                 .setMaxResults(1)
                 .list();
         if(l.size()>0){
-             for (Stanari stanar : l) {
+             for (Stanar   stanar : l) {
             new ProbniIzbornik().setVisible(true);
             dispose();
             break;

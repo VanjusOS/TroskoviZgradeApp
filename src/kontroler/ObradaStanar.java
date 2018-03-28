@@ -21,12 +21,12 @@ public class ObradaStanar {
         obrada = new Obrada<>();
     }
     
-    public List<Stanar> getPolaznici(String uvjet){
+    public List<Stanar> getStanari(String uvjet, int brojRezultata){
         return HibernateUtil.getSession().createQuery(
-                " from Polaznik a where a.obrisano=false "
+                " from Stanar a where a.obrisano=false "
                         + " and concat(a.ime,' ',a.prezime) like :uvjet ")
                 .setString("uvjet", "%" + uvjet + "%")
-                .setMaxResults(100)
+                .setMaxResults(brojRezultata)
                 .list();
     }
     
@@ -37,18 +37,29 @@ public class ObradaStanar {
         }
         
         if(p.getPrezime()==null || p.getPrezime().trim().length()==0){
-            throw new EdunovaException("Prezime obacezno", "prezime");
+            throw new EdunovaException("Prezime obavezno", "prezime");
         }
         
+        if(p.getBrojStana()==null || p.getBrojStana().trim().length()==0){
+            throw new EdunovaException("Broj stana obavezno", "broj stana");
+        }    
         
+        if(p.getBrojClanova()==null || p.getBrojClanova().trim().length()==0){
+            throw new EdunovaException("Broj članova obavezno", "broj članova");
+        }
+        if(p.getDug()==null){
+            throw new EdunovaException("Unesi dug", "dug");
+        }
         
         p = obrada.save(p);
         
         return p;
     }
 
-    public Stanar save(Stanar p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Stanar obrisi(Stanar st){
+        obrada.delete(st);
+        return st;
     }
+   
     
 }

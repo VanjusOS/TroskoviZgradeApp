@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,26 +15,39 @@ import javax.persistence.Table;
  * @author vanjus
  */
 @Table
+@Entity
 
-public class Trosak implements Serializable {
+public class Trosak extends Entitet implements Serializable {
 
-    private int sifra;
-    private String naziv;
+    
+    private BigDecimal trosakCiscenje;
+    private BigDecimal trosakStubisnaRasvjeta;
+    private BigDecimal dodatniTrosak;
 
-    public int getSifra() {
-        return sifra;
+    public BigDecimal getTrosakCiscenje() {
+        return trosakCiscenje;
     }
 
-    public void setSifra(int sifra) {
-        this.sifra = sifra;
+    public void setTrosakCiscenje(BigDecimal trosakCiscenje) {
+        this.trosakCiscenje = trosakCiscenje;
     }
 
-    public String getNaziv() {
-        return naziv;
+    public BigDecimal getTrosakStubisnaRasvjeta() {
+        return trosakStubisnaRasvjeta;
     }
 
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
+    public void setTrosakStubisnaRasvjeta(BigDecimal trosakStubisnaRasvjeta) {
+        this.trosakStubisnaRasvjeta = trosakStubisnaRasvjeta;
     }
+
+    public BigDecimal getDodatniTrosak() {
+        return dodatniTrosak;
+    }
+
+    public void setDodatniTrosak(BigDecimal dodatniTrosak) {
+        this.dodatniTrosak = dodatniTrosak;
+    }
+
+    
 
 }

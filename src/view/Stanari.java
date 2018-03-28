@@ -16,7 +16,10 @@ import pomocno.HibernateUtil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import kontroler.ObradaStanar;
 
@@ -42,6 +45,7 @@ public class Stanari extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
+        obrada = new ObradaStanar();
     }
 
     /**
@@ -68,6 +72,9 @@ public class Stanari extends javax.swing.JFrame {
         txtDug = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtBrojClanova = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtUvjet = new javax.swing.JTextField();
+        btnTrazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -100,6 +107,11 @@ public class Stanari extends javax.swing.JFrame {
 
         btnObriši.setFont(new java.awt.Font("AppleGothic", 1, 13)); // NOI18N
         btnObriši.setText("Obriši");
+        btnObriši.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrišiActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("AppleGothic", 2, 13)); // NOI18N
         jLabel3.setText("Ime");
@@ -107,25 +119,57 @@ public class Stanari extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("AppleGothic", 2, 13)); // NOI18N
         jLabel4.setText("Prezime");
 
+        txtBrojStana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrojStanaActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("AppleGothic", 2, 13)); // NOI18N
         jLabel5.setText("Broj Stana");
 
         jLabel7.setFont(new java.awt.Font("AppleGothic", 2, 13)); // NOI18N
         jLabel7.setText("Dug");
 
+        jLabel1.setText("Uvjet");
+
+        txtUvjet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUvjetActionPerformed(evt);
+            }
+        });
+
+        btnTrazi.setText("Traži");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
+        btnTrazi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnTraziKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTrazi))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
                         .addComponent(btnObriši))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,50 +185,84 @@ public class Stanari extends javax.swing.JFrame {
                             .addComponent(txtBrojStana, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBrojClanova, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDug, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBrojStana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtBrojClanova, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtDug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDodaj)
-                    .addComponent(btnPromjeni))
-                .addGap(18, 18, 18)
-                .addComponent(btnObriši))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtUvjet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTrazi))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBrojStana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBrojClanova, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtDug, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDodaj)
+                            .addComponent(btnPromjeni))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnObriši))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        Stanar s = new Stanar(txtIme.getText(), txtPrezime.getText());
+        Stanar s = new Stanar();
         s=napuniObjekt(s);
-        s = obrada.save(s);
+         try {
+             s = obrada.spremi(s);
+         } catch (EdunovaException ex) {
+             switch (ex.getKomponenta()) {
+                 case "ime":
+                     txtIme.requestFocus();
+                     break;
+                 case "broj stana":
+                     txtBrojStana.requestFocus();
+                     break;
+                 case "prezime":
+                     txtPrezime.requestFocus();
+                     break;
+                 case "broj članova":
+                     txtBrojClanova.requestFocus();
+                     break;
+                 case "dug":
+                     txtDug.requestFocus();
+                     break;
+                        
+             }
+            JOptionPane.showMessageDialog(getRootPane(), "Spremanje nije izvršeno, " + ex.getMessage());       
 
+         }
+       
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
@@ -201,9 +279,73 @@ public class Stanari extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void listaStanariValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaStanariValueChanged
-        // TODO add your handling code here:
+        if (evt.getValueIsAdjusting()) {
+            return;
+        }
+
+        Stanar p = listaStanari.getSelectedValue();
+
+        if (p == null) {
+            return;
+        }
+
+        txtIme.setText(p.getIme());
+        txtPrezime.setText(p.getPrezime());
+        txtBrojStana.setText(p.getBrojStana());
+        txtBrojClanova.setText(p.getBrojClanova());
+        
     }//GEN-LAST:event_listaStanariValueChanged
 
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+       if(txtUvjet.getText().trim().length() == 0){
+           JOptionPane.showMessageDialog(getRootPane(), "Obavezno uvjet pretraživanja");
+           return;
+       }    
+        trazi();
+       txtUvjet.requestFocus();
+                               
+    }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void txtUvjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUvjetActionPerformed
+          
+    }//GEN-LAST:event_txtUvjetActionPerformed
+
+    private void btnTraziKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnTraziKeyPressed
+        if(txtUvjet.getText().trim().length() == 0){
+           JOptionPane.showMessageDialog(getRootPane(), "Obavezno uvjet pretraživanja");
+           return;
+       }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            trazi();
+        }
+    }//GEN-LAST:event_btnTraziKeyPressed
+
+    private void txtBrojStanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrojStanaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBrojStanaActionPerformed
+
+    private void btnObrišiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrišiActionPerformed
+        Stanar st = listaStanari.getSelectedValue();
+        if(st==null){
+            return;
+        }
+        obrada.obrisi(st);
+    }//GEN-LAST:event_btnObrišiActionPerformed
+
+    private void trazi() {
+        int brojRezultata = 10;
+        DefaultListModel<Stanar> model = new DefaultListModel<>();
+        
+        if (txtUvjet.getText().trim().length() == 0) {
+            brojRezultata = 10;
+        }
+       List<Stanar> lista = obrada.getStanari(txtUvjet.getText(), brojRezultata);
+        for (Stanar stanar : lista) {
+            model.addElement(stanar);
+        }
+        listaStanari.setModel(model);
+   
+    }
     
       
 
@@ -211,6 +353,8 @@ public class Stanari extends javax.swing.JFrame {
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnObriši;
     private javax.swing.JButton btnPromjeni;
+    private javax.swing.JButton btnTrazi;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -223,11 +367,18 @@ public class Stanari extends javax.swing.JFrame {
     private javax.swing.JTextField txtDug;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtPrezime;
+    private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 
       private Stanar napuniObjekt(Stanar s) {
+          s.setIme((txtIme.getText()));
+          s.setPrezime(txtPrezime.getText());
         s.setBrojStana(txtBrojStana.getText());
         s.setBrojClanova(txtBrojClanova.getText());
+        if(txtDug.getText().trim().length()>0){
+           s.setDug(new BigDecimal(txtDug.getText())); 
+        }
+        
         return s;  
       }
 }

@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -25,12 +26,17 @@ public class Stanar extends Entitet implements Serializable {
     private String ime;
     private String prezime;
     private String brojClanova;
-    private String dug;
+    private BigDecimal dug;
 
-    public Stanar(String text, String text0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public BigDecimal getDug() {
+        return dug;
     }
 
+    public void setDug(BigDecimal dug) {
+        this.dug = dug;
+    }
+
+  
 
     public String getBrojStana() {
         return brojStana;
@@ -64,12 +70,10 @@ public class Stanar extends Entitet implements Serializable {
         this.brojClanova = brojClanova;
     }
 
-    public String getDug() {
-        return dug;
-    }
-
-    public void setDug(String dug) {
-        this.dug = dug;
+    @Override
+    public String toString() {
+        return getIme() + " " + getPrezime();
+        
     }
     
     

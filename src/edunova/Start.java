@@ -5,6 +5,7 @@
  */
 package edunova;
 
+import pomocno.HibernateUtil;
 import view.Loading;
 import view.ProbniIzbornik;
 
@@ -18,7 +19,7 @@ public class Start {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        HibernateUtil.getSession();
         new Loading().setVisible(true);
      
         //

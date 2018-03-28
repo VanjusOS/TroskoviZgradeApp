@@ -54,6 +54,11 @@ public class ProbniIzbornik extends javax.swing.JFrame {
         btnTrosakZgrade.setBackground(new java.awt.Color(255, 204, 204));
         btnTrosakZgrade.setForeground(new java.awt.Color(51, 51, 255));
         btnTrosakZgrade.setText("TROŠAK ZGRADE");
+        btnTrosakZgrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrosakZgradeActionPerformed(evt);
+            }
+        });
 
         btnStanari.setBackground(new java.awt.Color(204, 204, 255));
         btnStanari.setForeground(new java.awt.Color(51, 51, 255));
@@ -112,12 +117,16 @@ public class ProbniIzbornik extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDugActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnDugActionPerformed
 
     private void btnStanariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStanariActionPerformed
         new Stanari().setVisible(true);
     }//GEN-LAST:event_btnStanariActionPerformed
+
+    private void btnTrosakZgradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrosakZgradeActionPerformed
+        new Troskovi().setVisible(true);
+    }//GEN-LAST:event_btnTrosakZgradeActionPerformed
 
     /**
      * @param args the command line arguments

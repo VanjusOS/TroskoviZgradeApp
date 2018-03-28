@@ -35,11 +35,9 @@
 
     <!-- moraju se slijedno navesti klase koje su mapirane -->
     <mapping class="model.Operater" /> 
-    <mapping class="model.Smjer" /> 
-    <mapping class="model.Polaznik" /> 
-    <mapping class="model.Predavac" /> 
-    <mapping class="model.Grupa" /> 
+    <mapping class="model.Osoba" /> 
     <mapping class="model.Stanar" /> 
+    <mapping class="model.Trosak" />
     
 </session-factory>
 </hibernate-configuration>
