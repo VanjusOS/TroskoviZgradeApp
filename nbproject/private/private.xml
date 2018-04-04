@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/edunova/Start.java</file>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/kontroler/ObradaTrosak.java</file>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/model/Stanar.java</file>
             <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/view/Stanari.java</file>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/model/Trosak.java</file>
+            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/kontroler/Obrada.java</file>
             <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/kontroler/ObradaStanar.java</file>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/model/Dug.java</file>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/model/Osoba.java</file>
-            <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/view/ProbniIzbornik.java</file>
             <file>file:/Users/vanjus/Desktop/NETBEANS%20WORKSPACE/TroskoviZgradeApp/src/view/Troskovi.java</file>
         </group>
     </open-files>

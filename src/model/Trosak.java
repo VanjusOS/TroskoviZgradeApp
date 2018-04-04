@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,6 +15,7 @@ import javax.persistence.Table;
  *
  * @author vanjus
  */
+
 @Table
 @Entity
 
@@ -23,6 +25,16 @@ public class Trosak extends Entitet implements Serializable {
     private BigDecimal trosakCiscenje;
     private BigDecimal trosakStubisnaRasvjeta;
     private BigDecimal dodatniTrosak;
+    private String mjesecTroska;
+
+    public String getMjesecTroska() {
+        return mjesecTroska;
+    }
+
+    public void setMjesecTroska(String mjesecTroska) {
+        this.mjesecTroska = mjesecTroska;
+    }
+    
 
     public BigDecimal getTrosakCiscenje() {
         return trosakCiscenje;

@@ -10,7 +10,6 @@ import java.awt.Toolkit;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import kontroler.Obrada;
-import kontroler.ObradaTrosak;
 import model.Trosak;
 
 /**
@@ -20,8 +19,7 @@ import model.Trosak;
 public class Troskovi extends javax.swing.JFrame {
 
     private Obrada<Trosak> obrada;
-    
-    
+
     public Troskovi() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -48,6 +46,9 @@ public class Troskovi extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtTrosakStubisnaRasvjeta = new javax.swing.JTextField();
         btnDodaj = new javax.swing.JButton();
+        btnPromijeni = new javax.swing.JButton();
+        btnObrisi = new javax.swing.JButton();
+        btnTrazi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +74,12 @@ public class Troskovi extends javax.swing.JFrame {
             }
         });
 
+        btnPromijeni.setText("Promijeni");
+
+        btnObrisi.setText("Obriši");
+
+        btnTrazi.setText("Traži");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,30 +87,38 @@ public class Troskovi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTrosakStubisnaRasvjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtTrosakZaCiscenje, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(cmbMjeseci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtMjesecUGodini))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTrazi))
+                        .addComponent(txtTrosakStubisnaRasvjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTrosakZaCiscenje, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
                         .addComponent(txtDrugiTrosak, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                        .addComponent(txtMjesecUGodini))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnDodaj)
-                        .addGap(38, 38, 38))))
+                        .addGap(34, 34, 34)
+                        .addComponent(btnPromijeni)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(btnObrisi)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(txtMjesecUGodini)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmbMjeseci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbMjeseci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTrazi))
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtTrosakZaCiscenje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,13 +126,17 @@ public class Troskovi extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtTrosakStubisnaRasvjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(9, 9, 9)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDrugiTrosak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDrugiTrosak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDodaj))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(btnDodaj)
+                    .addComponent(btnPromijeni))
+                .addGap(18, 18, 18)
+                .addComponent(btnObrisi)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,35 +148,63 @@ public class Troskovi extends javax.swing.JFrame {
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         Trosak t = new Trosak();
-        
-        if (t==null) {
-            return;
-        }
-        
-        t.setTrosakCiscenje(new BigDecimal(txtTrosakZaCiscenje.getText()));
-        t.setTrosakStubisnaRasvjeta(new BigDecimal(txtTrosakStubisnaRasvjeta.getText()));
-        t.setDodatniTrosak(new BigDecimal(txtDrugiTrosak.getText()));
-        
-        if (t.getTrosakCiscenje()==null){
+
+        if (txtTrosakZaCiscenje.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(getRootPane(), "Unesi trosak ciscenja");
             return;
         }
-        if (t.getTrosakStubisnaRasvjeta()==null){
+        if (txtTrosakStubisnaRasvjeta.getText().trim().length() == 0) {
             JOptionPane.showMessageDialog(getRootPane(), "Unesi trosak stubisne rasvjete");
             return;
         }
-        
-        obrada.save(t);
-    }//GEN-LAST:event_btnDodajActionPerformed
 
-    /**
+        if (txtDrugiTrosak.getText().trim().length() > 0) {
+
+            try {
+                    t.setDodatniTrosak(new BigDecimal(txtDrugiTrosak.getText()));
+               
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getRootPane(), "drugi  trosak  nije broj");
+     
+                t.setDodatniTrosak(BigDecimal.ZERO);
+            }
+
+            
+    }//GEN-LAST:event_btnDodajActionPerformed
+        else{
+             t.setDodatniTrosak(BigDecimal.ZERO);
+        }
+    try {
+                new BigDecimal(txtTrosakZaCiscenje.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getRootPane(), " trosak ciscenja nije broj");
+                return;
+            }
+    
+      try {
+                new BigDecimal(txtTrosakStubisnaRasvjeta.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getRootPane(), " trosak stubište nije broj");
+                return;
+            }
+
+            t.setTrosakCiscenje(new BigDecimal(txtTrosakZaCiscenje.getText()));
+            t.setTrosakStubisnaRasvjeta(new BigDecimal(txtTrosakStubisnaRasvjeta.getText()));
+            t.setMjesecTroska(cmbMjeseci.getItemAt(WIDTH));
+            
+
+            obrada.save(t);
+           
+    
+    }
+     /**
      * @param args the command line arguments
      */
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnObrisi;
+    private javax.swing.JButton btnPromijeni;
+    private javax.swing.JButton btnTrazi;
     private javax.swing.JComboBox<String> cmbMjeseci;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
