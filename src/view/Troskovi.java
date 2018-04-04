@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 import kontroler.Obrada;
 import model.Trosak;
+import pomocno.HibernateUtil;
 
 /**
  *
@@ -19,6 +20,7 @@ import model.Trosak;
 public class Troskovi extends javax.swing.JFrame {
 
     private Obrada<Trosak> obrada;
+    private Trosak t;
 
     public Troskovi() {
         initComponents();
@@ -50,7 +52,7 @@ public class Troskovi extends javax.swing.JFrame {
         btnObrisi = new javax.swing.JButton();
         btnTrazi = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cmbMjeseci.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Siječanj", "Veljača", "Ožujak", "Travanj", "Svibanj", "Lipanj", "Srpanj", "Kolovoz", "Rujan", "Listopad", "Studeni", "Prosinac" }));
         cmbMjeseci.addActionListener(new java.awt.event.ActionListener() {
@@ -75,10 +77,25 @@ public class Troskovi extends javax.swing.JFrame {
         });
 
         btnPromijeni.setText("Promijeni");
+        btnPromijeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromijeniActionPerformed(evt);
+            }
+        });
 
         btnObrisi.setText("Obriši");
+        btnObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiActionPerformed(evt);
+            }
+        });
 
         btnTrazi.setText("Traži");
+        btnTrazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraziActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,11 +120,11 @@ public class Troskovi extends javax.swing.JFrame {
                         .addComponent(btnDodaj)
                         .addGap(34, 34, 34)
                         .addComponent(btnPromijeni)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
+                .addContainerGap(49, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnObrisi)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +153,7 @@ public class Troskovi extends javax.swing.JFrame {
                     .addComponent(btnPromijeni))
                 .addGap(18, 18, 18)
                 .addComponent(btnObrisi)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +164,24 @@ public class Troskovi extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbMjeseciActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        
+         t =  (Trosak) HibernateUtil.getSession().createQuery(
+                " from Trosak a where a.obrisano=false "
+                        + " and a.mjesecTroska = :uvjet ")
+                .setString("uvjet", (String)cmbMjeseci.getSelectedItem())
+                .uniqueResult();
+       
+       if (t!=null) {
+            JOptionPane.showMessageDialog(getRootPane(), "Za defininirani mjesec već postoje podaci, učitao sam ih");
+            
+            txtTrosakStubisnaRasvjeta.setText(t.getTrosakStubisnaRasvjeta().toString());
+        txtTrosakZaCiscenje.setText(t.getTrosakCiscenje().toString());
+        txtDrugiTrosak.setText(t.getDodatniTrosak().toString());
+            
+            return;
+       }
+        
+        
         Trosak t = new Trosak();
 
         if (txtTrosakZaCiscenje.getText().trim().length() == 0) {
@@ -170,7 +205,7 @@ public class Troskovi extends javax.swing.JFrame {
             }
 
             
-    }//GEN-LAST:event_btnDodajActionPerformed
+        }
         else{
              t.setDodatniTrosak(BigDecimal.ZERO);
         }
@@ -190,13 +225,92 @@ public class Troskovi extends javax.swing.JFrame {
 
             t.setTrosakCiscenje(new BigDecimal(txtTrosakZaCiscenje.getText()));
             t.setTrosakStubisnaRasvjeta(new BigDecimal(txtTrosakStubisnaRasvjeta.getText()));
-            t.setMjesecTroska(cmbMjeseci.getItemAt(WIDTH));
+            t.setMjesecTroska(cmbMjeseci.getItemAt(cmbMjeseci.getSelectedIndex()));
             
 
             obrada.save(t);
-           
+          
+    }//GEN-LAST:event_btnDodajActionPerformed
+
+    private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+          
+       t =  (Trosak) HibernateUtil.getSession().createQuery(
+                " from Trosak a where a.obrisano=false "
+                        + " and a.mjesecTroska = :uvjet ")
+                .setString("uvjet", (String)cmbMjeseci.getSelectedItem())
+                .uniqueResult();
+       
+       if (t==null) {
+            JOptionPane.showMessageDialog(getRootPane(), "Nije unesen mjesec");
+            return;
+       }
+        
+            
+        txtTrosakStubisnaRasvjeta.setText(t.getTrosakStubisnaRasvjeta().toString());
+        txtTrosakZaCiscenje.setText(t.getTrosakCiscenje().toString());
+        txtDrugiTrosak.setText(t.getDodatniTrosak().toString());
+       
+    }//GEN-LAST:event_btnTraziActionPerformed
+
+    private void btnPromijeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromijeniActionPerformed
+        if (txtTrosakZaCiscenje.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(getRootPane(), "Unesi trosak ciscenja");
+            return;
+        }
+        if (txtTrosakStubisnaRasvjeta.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(getRootPane(), "Unesi trosak stubisne rasvjete");
+            return;
+        }
+
+        if (txtDrugiTrosak.getText().trim().length() > 0) {
+
+            try {
+                    t.setDodatniTrosak(new BigDecimal(txtDrugiTrosak.getText()));
+               
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getRootPane(), "drugi  trosak  nije broj");
+     
+                t.setDodatniTrosak(BigDecimal.ZERO);
+            }
+
+            
+        }
+        else{
+             t.setDodatniTrosak(BigDecimal.ZERO);
+        }
+    try {
+                new BigDecimal(txtTrosakZaCiscenje.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getRootPane(), " trosak ciscenja nije broj");
+                return;
+            }
     
-    }
+      try {
+                new BigDecimal(txtTrosakStubisnaRasvjeta.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(getRootPane(), " trosak stubište nije broj");
+                return;
+            }
+
+            t.setTrosakCiscenje(new BigDecimal(txtTrosakZaCiscenje.getText()));
+            t.setTrosakStubisnaRasvjeta(new BigDecimal(txtTrosakStubisnaRasvjeta.getText()));
+            t.setMjesecTroska(cmbMjeseci.getItemAt(cmbMjeseci.getSelectedIndex()));
+            
+            obrada.save(t);
+        
+    }//GEN-LAST:event_btnPromijeniActionPerformed
+
+    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
+        
+        obrada.delete(t);
+        
+        
+           
+        
+    }//GEN-LAST:event_btnObrisiActionPerformed
+          
+    
+    
      /**
      * @param args the command line arguments
      */
