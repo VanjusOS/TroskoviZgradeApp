@@ -156,7 +156,7 @@
     <Component class="javax.swing.JButton" name="btnDodaj">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="AppleGothic" size="13" style="1"/>
+          <Font name="AppleGothic" size="13" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Dodaj"/>
       </Properties>
@@ -178,7 +178,7 @@
     <Component class="javax.swing.JButton" name="btnObri&#x161;i">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="AppleGothic" size="13" style="1"/>
+          <Font name="AppleGothic" size="13" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
       </Properties>

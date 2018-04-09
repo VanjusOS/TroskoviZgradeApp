@@ -89,7 +89,7 @@ public class Stanari extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("AppleGothic", 2, 13)); // NOI18N
         jLabel6.setText("Broj Clanova");
 
-        btnDodaj.setFont(new java.awt.Font("AppleGothic", 1, 13)); // NOI18N
+        btnDodaj.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class Stanari extends javax.swing.JFrame {
             }
         });
 
-        btnObriši.setFont(new java.awt.Font("AppleGothic", 1, 13)); // NOI18N
+        btnObriši.setFont(new java.awt.Font("AppleGothic", 0, 13)); // NOI18N
         btnObriši.setText("Obriši");
         btnObriši.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

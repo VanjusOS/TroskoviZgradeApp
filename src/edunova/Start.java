@@ -7,7 +7,7 @@ package edunova;
 
 import pomocno.HibernateUtil;
 import view.Loading;
-import view.ProbniIzbornik;
+import view.PocetniIzbornik;
 
 /**
  *
@@ -22,28 +22,7 @@ public class Start {
         HibernateUtil.getSession();
         new Loading().setVisible(true);
      
-        //
-        
-//        Obrada<Smjer> o = new Obrada<>();
-//        
-//        Smjer s = new Smjer();
-//        s.setNaziv("J17");
-//        s.setCijena(BigDecimal.TEN);
-//        
-//        o.save(s);
-
-//        ObradaPolaznik op = new ObradaPolaznik();
-//        Polaznik p = new Polaznik();
-//        
-//        try {
-//            op.spremi(p);
-//        } catch (EdunovaException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        
-//        Obrada<Polaznik> obrada = new Obrada<>();
-//        obrada.save(p);
-       
+ 
     }
     
 }

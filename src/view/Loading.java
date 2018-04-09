@@ -44,12 +44,12 @@ public class Loading extends javax.swing.JFrame {
                 .list();
         if(l.size()>0){
              for (Stanar   stanar : l) {
-            new ProbniIzbornik().setVisible(true);
+            new PocetniIzbornik().setVisible(true);
             dispose();
             break;
         }
         }else{
-            new ProbniIzbornik().setVisible(true);
+            new PocetniIzbornik().setVisible(true);
             dispose();
         }
        
